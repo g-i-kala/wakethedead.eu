@@ -1,0 +1,461 @@
+/* Challenge
+
+   Make the navigation layout work
+   on both mobile and large screens.
+
+   Mobile-first, so mobile styles first,
+   then add the large screen styles
+   inside the existing media query
+
+*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color01: #BFB1A4;
+    --color02: #8C3E3E;
+    --color03: #D9D9D9;
+    --color04: #262626;
+    --color05: #0D0D0D;
+    --colorWhite: #ffffff;
+    --colorBlack: #000000;
+  }
+  
+html {
+     font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Libre Caslon Display', serif;
+    background-color: var(--color03);
+}
+
+img {
+    max-width: 100%;
+}
+
+h1 {
+    font-size: clamp(2.3rem, calc(2.3rem + ((1vw - 0.32rem) * 0.625)), 2.9rem);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: clamp(1.2rem, calc(1.2rem + ((1vw - 0.32rem) * 0.4545)), 1.6rem);
+}
+
+p {
+    font-size: clamp(1rem, calc(1rem + ((1vw - 0.32rem) * 0.4545)), 1.4rem);
+}
+
+.default__link {
+    text-decoration: none;
+    color: var(--color04);
+}
+
+.default__link:hover {
+    color: var(--color02);
+}
+
+.txt__small {
+    font-size: 0.8rem;
+}
+
+.txt__medium {
+    font-size: 1rem;
+}
+
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase; 
+    color: #23424A;
+    font-weight: 900;
+    background-color: #38CFD9;
+    padding: .75em 2em;
+    border-radius: 100px;
+}
+
+.btn:hover,
+.btn:focus {
+    opacity: .75; 
+}
+
+.container {
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+    /* added for nav-toggle positioning */
+    position: relative;
+    /* border: 1px yellow solid; */
+}
+
+header {
+    background: var(--color01);
+    padding: 1em 0;
+    text-align: center;
+}
+
+
+.nav {
+    width: 100%;
+    
+}
+
+.nav__list {
+    margin: 0; 
+    padding-inline-start: 0;
+}
+
+.nav__item {
+    list-style-type: none;
+    margin-top: .5em;
+}
+
+.nav__link {
+    color: var(--color04);
+    padding-left: 1em;
+    padding-right: 1em;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.4rem;
+}
+
+
+.nav__link:hover,
+.nav__link:focus {
+    color: var(--color02);
+}
+
+.nav__link--button {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase; 
+    color: var(--color04);
+    font-weight: 6000;
+    background-color: var(--color01);
+    padding: .4em 0.9em;
+    border-radius: 20px;
+}
+
+.nav-toggle {
+    cursor: pointer;
+    border: 0;
+    width: 3em;
+    height: 3em;
+    padding: 0em;
+    border-radius: 50%;
+    background: var(--color02);
+    color: var(--color03);
+    transition: opacity 250ms ease;
+    
+    position: absolute;
+    left: 0;
+}
+
+.nav-toggle:focus,
+.nav-toggle:hover {
+    opacity: .75;
+}
+
+.hamburger {
+    width: 50%;
+    position: relative;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    display: block;
+    margin: 0 auto;
+    height: 3px;
+    background: var(--colorWhite);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    width: 100%;
+}
+
+.hamburger::before {
+    transform: translateY(-6px);
+}
+
+.hamburger::after {
+    transform: translateY(3px);
+}
+
+/* made changes here from video
+   to make it more accessible.
+   
+   Works the same :) */
+.nav {
+    visibility: hidden;
+    height: 0;
+}
+
+.nav--visible {
+    visibility: visible;
+    height: auto;
+    position: relative;
+} 
+
+.logo {
+    text-decoration: none;
+    color: #262626;
+   
+}
+
+.section__wtd {
+    width: 100%;
+    /* border: 1px red solid; */
+}
+
+.section__wtd--contact {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    
+}
+
+.contact__specs{
+   align-self: center;
+   margin-top: 49vh;
+   font-size: 1.6rem;
+}
+
+.section__backtotop {
+    text-align: center;
+    margin: 2em 0 2em 0;
+}
+
+.section__backtotop--contact {
+    
+    margin: 2em 0 2em 0;
+}
+
+.hero__images__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2em 0 2em 0;
+}
+
+.media__images__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2em 0 2em 0;
+}
+
+.hero__info__wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2em 0 2em 0;
+    gap: 3em;
+}
+
+.hero__img {
+    width: 33.3%;
+    /* padding: 0.5em; */
+}
+
+.hero__img--about{
+    width: 50%;
+}
+
+.hero__info {
+    width: 45%;
+}
+
+.section__title {
+    text-align: center;
+    margin: 2em 0 2em 0;
+}
+
+.about__link {
+    font-size: clamp(1rem, calc(1rem + ((1vw - 0.32rem) * 0.4545)), 1.4rem);
+}
+
+.media__img {
+    position: relative;
+    /* padding: 0.5em; */
+}
+
+.media__link {
+    background-color: var(--color03);
+    opacity: 0.75;
+    border-radius: 3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    color: var(--color04);
+}
+
+.media__link h2 {
+    margin: 0.2em 1em 0.2em 1em;
+}
+
+
+.media__link--bottom {
+    background-color: var(--color04);
+    color: var(--color03);
+}
+
+.media__link--left {
+    left: 25%;
+}
+
+.media__link--right {
+    left: 75%;
+}
+
+.media__link:hover {
+    color: var(--color02);
+}
+
+.media__link--bottom:hover {
+    color: var(--colorWhite);
+}
+
+.main {
+    margin-top: 3em;
+}
+
+/* DLA MACIUPKICH */
+
+@media (max-width: 596px) {
+
+    .section__title {
+        margin: 1em 0 1em 0;
+    }
+
+    .hero__info__wrapper{
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+
+    .hero__images__wrapper--about {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__img--about {
+        width: 95%;
+    }
+
+    .hero__info {
+        width: 95%;
+    }
+
+    /* .media__link {
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+    } */
+
+    
+}
+
+
+/* DLA DUŻYCH */
+
+@media (min-width: 768px) {
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        align-items: center;
+
+    }
+
+    /* .nav__list {
+        display: flex;
+    } */
+
+    .header__top {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .nav-toggle {
+        display: none; 
+    }
+
+    .logo {
+        display: flex;
+        margin-right: 1em;
+    }
+
+    .nav {
+        visibility: visible;
+        display: flex;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+       
+    }
+
+    .nav__item {
+        display: flex;
+        align-items: center;
+        margin-right: 1.5em;
+    }
+
+    .hero__text {
+        width: 62%;
+    }
+    
+    .hero__info {
+        width: 40%;
+    }
+
+    .hero__img {
+        width: 32%;
+        align-self: flex-start;
+        margin: 0;
+    }
+    
+    .hero__img--about{
+        width: 50%;
+    }
+
+    .primary-content {
+        width: 62%;
+    }
+
+
+    .nav__list--primary {
+        display: flex;
+    }
+
+    .nav__list--secondary {
+        display: flex;
+        align-content: center;
+        margin-top:0;
+        
+    }
+
+
+}
